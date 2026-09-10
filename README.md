@@ -1,7 +1,8 @@
 # Single Tree — High-Density Photogrammetry Dataset
 
 **812 photos of one mature deciduous tree, flown from 0.5 to 7.9 m above the ground. 14.1 GB.
-807 align, camera poses included.** CC BY 4.0.
+807 align, and the solved camera poses ship with it — ready for Gaussian splatting without
+running COLMAP first.** CC BY 4.0.
 
 > ## 🏆 Winner — RealityCapture #RCmonthlyChallenge, August 2020
 >
@@ -91,7 +92,8 @@ only.
 
 [`poses/`](poses/) has 807 solved cameras with intrinsics and extrinsics, plus a
 1,206,765-point sparse cloud. Same thing COLMAP would give you, so you can skip that step and
-go straight to splatting or meshing.
+go straight to **Gaussian splatting (3DGS)**, NeRF, or meshing — poses plus tie points is
+exactly what those pipelines ingest.
 
 | | |
 |---|---|
