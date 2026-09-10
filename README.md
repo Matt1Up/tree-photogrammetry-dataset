@@ -4,18 +4,15 @@
 807 align, and the solved camera poses ship with it in **COLMAP format** — point a Gaussian
 splatting pipeline straight at it, no structure-from-motion run required.** CC BY 4.0.
 
-## ⬇ Download the images
+## ⬇ Download
 
 ### **[→ huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry)**
 
-**Click that, open the "Files and versions" tab, and download whatever you want.** No account,
-no signup, no tools, no command line. Just click files and they download.
+Browse the **Files** tab and take what you want — no account needed. The 14 GB of imagery lives
+there because GitHub won't host files that size; this repo holds docs, checksums and poses.
 
-The images are 14 GB so they live there rather than on GitHub, which cannot host files that
-size. This page has the documentation, checksums and camera poses.
-
-*Want one photo to look at? [Here's one.](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg)
-Command-line options are further down under [Download](#download).*
+[Sample image](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg)
+ · [command-line options](#download)
 
 ---
 
