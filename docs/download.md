@@ -13,9 +13,9 @@ Total: **14.1 GB, 812 images.**
 **The images are published as individual files, not one giant archive.** That is deliberate:
 
 - You can download **one capture group** instead of all 14.1 GB.
-- Downloads **resume**. A dropped connection at 38 GB does not start over.
+- Downloads **resume**. A dropped connection partway through does not start over.
 - Each file is **individually checksummed**, so corruption is localised, not fatal.
-- No 50 GB of scratch space needed just to unpack.
+- No scratch space needed just to unpack an archive.
 
 **Nothing is gzipped.** JPEG is already compressed — measured on this dataset, gzip reclaims
 **0.2%** while costing hours of CPU and destroying random access. Where archives are offered
@@ -30,7 +30,7 @@ Resumable, parallel, hash-verified, and the CLI handles retries for you.
 ```bash
 pip install -U 'huggingface_hub[cli]'
 
-# sample pack (~~420 MB) — look before you commit to 14.1 GB
+# sample pack (~420 MB) — look before you commit to 14.1 GB
 ./scripts/download.sh --sample
 
 # everything

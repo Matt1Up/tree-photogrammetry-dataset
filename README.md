@@ -1,7 +1,7 @@
 # Single Tree — High-Density Photogrammetry Dataset
 
-**812 photos of one tree, ground level to above the canopy. 14.1 GB. 807 align, camera poses
-included.** CC BY 4.0.
+**812 photos of one mature deciduous tree, flown from 0.5 to 7.9 m above the ground. 14.1 GB.
+807 align, camera poses included.** CC BY 4.0.
 
 > ## 🏆 Winner — RealityCapture #RCmonthlyChallenge, August 2020
 >
@@ -28,8 +28,8 @@ A few times the wind picked back up and I packed it in and went home. I got two 
 
 No wind is why it aligns.
 
-812 photos, ground level to above the canopy. 807 align. Camera poses are included, so you can
-skip COLMAP.
+812 photos, flown between 0.5 and 7.9 m above the ground. 807 align. Camera poses are
+included, so you can skip COLMAP.
 
 ## The reconstruction
 
@@ -67,12 +67,15 @@ Two sessions, two days apart, at different heights. The low and mid tiers are ho
 knee and chest height with the camera angled up, covering the trunk and the underside of the
 canopy.
 
-| group | images | date | height above takeoff | gimbal | covers |
-|---|---:|---|---|---|---|
-| `Original_low` | 85 | 2020-07-18 | +0.5 m | +6.2° (up) | trunk, root flare, canopy underside |
-| `Original_mid` | 68 | 2020-07-18 | +1.7 m | +2.3° (up) | lower canopy, branch structure |
-| `The_Tree` | 659 | 2020-07-20 | orbit to above canopy | varies | full crown and outer canopy |
-| **total** | **812** | | | | |
+| group | images | date | height above takeoff | gimbal pitch |
+|---|---:|---|---|---|
+| `Original_low` | 85 | 2020-07-18 | +0.5 m (fixed) | +4.2° to +8.2° |
+| `Original_mid` | 68 | 2020-07-18 | +1.7 to +4.0 m | −8.0° to +2.7° |
+| `The_Tree` | 659 | 2020-07-20 | +1.3 to +7.9 m | −53.1° to +17.5° |
+| **total** | **812** | | | |
+
+Heights and gimbal angles are read from EXIF across every frame in each group, not sampled.
+Positive gimbal is pointing upward.
 
 ## The capture rig
 
@@ -95,7 +98,7 @@ go straight to splatting or meshing.
 | `poses/xmp/` | 807 XMP sidecars, named to match `images/` |
 | `poses/cameras.csv` | the same data as one table |
 | `poses/unaligned.txt` | the 5 that did not solve |
-| `tiepoints.ply` | 1.2M sparse points, hosted with the images (77 MB) |
+| `tiepoints.ply` | 1.2M sparse points, 77 MB — hosted with the images, not in git |
 
 Solved in RealityScan 2.2, which is free. Format and COLMAP conversion notes are in
 [`poses/README.md`](poses/README.md).
@@ -126,9 +129,9 @@ Every file is checksummed. After downloading:
 
 ## Reproducing the reconstruction
 
-See **[docs/reproduce.md](docs/reproduce.md)** for alignment settings.
-Aligns in RealityCapture / RealityScan, Agisoft Metashape, COLMAP and Meshroom. Images carry
-GPS, so georeferencing works without ground control.
+See **[docs/reproduce.md](docs/reproduce.md)** for alignment settings. The images are ordinary
+geotagged JPEGs, so any structure-from-motion tool will read them — RealityScan, Metashape,
+COLMAP, Meshroom.
 
 Expect ~807/812. The solved alignment is in [`poses/`](poses/) if you want something to compare
 against.
@@ -147,7 +150,7 @@ against.
 - **16-bit originals exist for 153 images.** The low and mid tiers have 16-bit PNG masters
   (~100 MB each, 15 GB total). Not included — they would double the download and no
   photogrammetry pipeline needs them. Open an issue if you want them.
-- **These are Lightroom exports, not raw.** Raw DNGs are not part of this release.
+- **These are Lightroom exports.** EXIF records Lightroom Classic 9.3. Original camera files are not part of this release.
 
 ## Licence
 
