@@ -1,9 +1,7 @@
 # Single Tree — High-Density Photogrammetry Dataset
 
-**812 full-resolution photographs (14.1 GB) of one mature deciduous tree, captured from
-ground level to above the canopy. 807 of 812 images align — and the solved camera poses
-ship with it.**
-Released under CC BY 4.0 — free for commercial, academic and ML use with attribution.
+**812 photos of one tree, ground level to above the canopy. 14.1 GB. 807 align, camera poses
+included.** CC BY 4.0.
 
 > ## 🏆 Winner — RealityCapture #RCmonthlyChallenge, August 2020
 >
@@ -19,19 +17,19 @@ Released under CC BY 4.0 — free for commercial, academic and ML use with attri
 
 ---
 
-## Why this exists
+## The tree
 
-Vegetation is the hardest subject in photogrammetry. Thin branches, self-similar texture,
-leaves that move between frames, and a canopy that occludes its own trunk — a tree breaks
-assumptions that buildings never test.
+There's a tree up the street from where I lived in Minnetonka. I watched the leaves out my
+window for a few days, and when they went completely still I'd grab the drone and the scanner,
+drive the three blocks up there, and fly.
 
-Most published photogrammetry datasets are buildings, statues or turntable objects precisely
-because those are easy. This one is deliberately the hard case: **a single tree, covered
-densely enough to actually solve**, with the low-altitude trunk passes that most aerial
-captures skip.
+A few times the wind picked back up and I packed it in and went home. I got two good sessions,
+18 and 20 July 2020.
 
-If you are benchmarking a matcher, a Gaussian splatting pipeline, or a mesh reconstructor,
-this is the set that will tell you where it breaks.
+No wind is why it aligns.
+
+812 photos, ground level to above the canopy. 807 align. Camera poses are included, so you can
+skip COLMAP.
 
 ## The reconstruction
 
@@ -65,10 +63,9 @@ Full project write-up: **[mattguertin.com/portfolio/tree](https://mattguertin.co
 
 ### Capture tiers
 
-The set is two sessions, two days apart, covering different heights. **The low and mid tiers
-are the valuable, unusual part** — they are hover passes at knee and chest height with the
-camera angled *upward*, capturing the trunk, root flare and canopy underside that a
-conventional descending orbit never sees.
+Two sessions, two days apart, at different heights. The low and mid tiers are hover passes at
+knee and chest height with the camera angled up, covering the trunk and the underside of the
+canopy.
 
 | group | images | date | height above takeoff | gimbal | covers |
 |---|---:|---|---|---|---|
@@ -84,20 +81,14 @@ conventional descending orbit never sees.
 Photography flown with a **DJI Mavic 2 Pro** (Hasselblad L1D-20c). EXIF records processing in
 Adobe Lightroom Classic 9.3.
 
-A **FARO Focus S150** terrestrial laser scanner was also on site, visible above.
-**Its data is not part of this release** — this dataset is the 812 photographs only. The
-scanner is shown because it is part of the honest record of how the subject was captured, not
-because point clouds are included.
+A FARO Focus S150 was on site too. Its data is not in this release — this is the photographs
+only.
 
-## Camera poses — start training immediately
+## Camera poses
 
-**[`poses/`](poses/) contains a solved alignment**: 807 cameras with full intrinsics and
-extrinsics, plus a 1,206,765-point sparse cloud. That is the equivalent of a COLMAP sparse
-reconstruction, already done.
-
-Most people who download a photogrammetry dataset spend their first several hours running
-structure from motion before they can begin. On 812 images at 20 MP that is a long wait for a
-result you already know. **Skip it.**
+[`poses/`](poses/) has 807 solved cameras with intrinsics and extrinsics, plus a
+1,206,765-point sparse cloud. Same thing COLMAP would give you, so you can skip that step and
+go straight to splatting or meshing.
 
 | | |
 |---|---|
@@ -106,12 +97,10 @@ result you already know. **Skip it.**
 | `poses/unaligned.txt` | the 5 that did not solve |
 | `tiepoints.ply` | 1.2M sparse points, hosted with the images (77 MB) |
 
-Solved in **RealityScan 2.2**, the current free version, so the alignment is reproducible by
-anyone rather than tied to a licence. Format details and Gaussian-splatting conversion notes
-are in [`poses/README.md`](poses/README.md).
+Solved in RealityScan 2.2, which is free. Format and COLMAP conversion notes are in
+[`poses/README.md`](poses/README.md).
 
-**All five unaligned images come from the low and mid tiers**, none from `The_Tree` — the
-near-ground upward-angled frames are genuinely the hard ones. Beating 807 is a real result.
+The 5 that didn't align are all from the low and mid tiers, none from `The_Tree`.
 
 ## Download
 
@@ -141,19 +130,13 @@ See **[docs/reproduce.md](docs/reproduce.md)** for alignment settings.
 Aligns in RealityCapture / RealityScan, Agisoft Metashape, COLMAP and Meshroom. Images carry
 GPS, so georeferencing works without ground control.
 
-**Expect ~807/812.** A handful of frames genuinely do not solve — that is the honest result on
-this subject, not a processing failure to debug away. The solved alignment is in [`poses/`](poses/)
-if you want to compare against it rather than start from nothing.
+Expect ~807/812. The solved alignment is in [`poses/`](poses/) if you want something to compare
+against.
 
-## Known characteristics
+## Notes
 
-Read these before you file a bug — they are properties of the capture, not defects in the upload.
-
-- **Captured in dead-still air, deliberately.** Both sessions were flown only when there was no
-  wind at all. The tree is three blocks from where I lived; I watched the leaves from my window
-  and drove over to fly the moment they stopped moving. **This is the single biggest reason the
-  set solves as well as it does.** Foliage photogrammetry usually fails because the subject moves
-  between frames — here it did not.
+- **No wind.** Both sessions were flown in still air. A windy recapture would not align the
+  same.
 - **The 153 low/mid images had their metadata repaired.** These were exported through
   RealityCapture, which stripped all EXIF. The original camera metadata — make, model, GPS,
   timestamp, exposure — was grafted back on from the untouched 16-bit source files.
@@ -161,10 +144,9 @@ Read these before you file a bug — they are properties of the capture, not def
   Verified: decoded-RGB checksums match before and after.
 - **Filenames were normalised.** Those same 153 files carried a RealityCapture double extension
   (`Original_low-10.png.geometry.jpg`). Renamed to `Original_low-10.jpg`. Content untouched.
-- **16-bit originals exist for 153 images.** The low and mid tiers have 16-bit lossless PNG
-  masters (~100 MB each, 15 GB total). They are not in this release because 8-bit is what every
-  photogrammetry pipeline actually consumes, and they would double the download for no
-  alignment benefit. Open an issue if you have a use for them.
+- **16-bit originals exist for 153 images.** The low and mid tiers have 16-bit PNG masters
+  (~100 MB each, 15 GB total). Not included — they would double the download and no
+  photogrammetry pipeline needs them. Open an issue if you want them.
 - **These are Lightroom exports, not raw.** Raw DNGs are not part of this release.
 
 ## Licence
@@ -184,8 +166,7 @@ See [CITATION.cff](CITATION.cff) for BibTeX and academic citation formats.
 ## Related
 
 - **[Chicago / Grant Park dataset](https://github.com/Matt1Up/chicago-photogrammetry-dataset)** —
-  2,751 aerial images and 43 laser stations over downtown Chicago. The large-area counterpart
-  to this controlled single-subject set.
+  2,751 aerial images and 43 laser stations over downtown Chicago.
 - **[mattguertin.com](https://mattguertin.com)** — portfolio and other work.
 
 ---

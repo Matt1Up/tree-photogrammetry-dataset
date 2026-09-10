@@ -6,22 +6,16 @@ look — vegetation needs different treatment from buildings.
 
 ---
 
-## Why a tree is hard
+## Working with foliage
 
-Everything that makes urban photogrammetry reliable is absent here:
-
-- **The subject normally moves.** Leaves and thin branches shift between frames in any breeze,
-  so two images seconds apart observe different geometry. **This capture avoided that entirely** —
-  both sessions were flown in completely still air, waited for deliberately. That is why it
-  solves, and it is worth knowing that a windy recapture of the same tree would not.
-- **Texture is self-similar.** One leaf looks like ten thousand other leaves. Feature matchers
-  produce confident, wrong correspondences.
-- **The subject occludes itself.** The canopy hides the trunk from above; the trunk hides the
-  far canopy from below. This is exactly why the low and mid tiers exist.
-- **Thin structures fall below one pixel.** Outer twigs are simply not reconstructible at this
-  GSD, and no setting changes that.
-
-This dataset is worth benchmarking against precisely because these problems are unavoidable.
+- **Texture is self-similar.** One leaf looks like the next, so matchers produce confident wrong
+  correspondences.
+- **The subject occludes itself.** The canopy hides the trunk from above, the trunk hides the far
+  canopy from below. That is why the low and mid tiers exist.
+- **Thin structures fall below a pixel.** Outer twigs will not reconstruct at this GSD and no
+  setting changes that.
+- **Wind normally ruins foliage capture.** This one was flown in still air, so that variable is
+  gone. A windy recapture of the same tree would not behave the same way.
 
 ---
 
