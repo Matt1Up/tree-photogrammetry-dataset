@@ -81,8 +81,8 @@ conventional descending orbit never sees.
 
 ![FARO Focus S150 set up beneath the subject tree](preview/rig-laser.jpg)
 
-Photography flown with a **DJI Mavic 2 Pro** (Hasselblad L1D-20c), developed from DNG in
-Lightroom Classic 9.3 with consistent settings across the set.
+Photography flown with a **DJI Mavic 2 Pro** (Hasselblad L1D-20c). EXIF records processing in
+Adobe Lightroom Classic 9.3.
 
 A **FARO Focus S150** terrestrial laser scanner was also on site, visible above.
 **Its data is not part of this release** — this dataset is the 812 photographs only. The
@@ -149,9 +149,11 @@ if you want to compare against it rather than start from nothing.
 
 Read these before you file a bug — they are properties of the capture, not defects in the upload.
 
-- **Wind moved the subject.** Two sessions two days apart, outdoors, on a tree. Leaves and thin
-  branches are not in identical positions between frames. This is inherent to the subject and is
-  a large part of why the dataset is interesting.
+- **Captured in dead-still air, deliberately.** Both sessions were flown only when there was no
+  wind at all. The tree is three blocks from where I lived; I watched the leaves from my window
+  and drove over to fly the moment they stopped moving. **This is the single biggest reason the
+  set solves as well as it does.** Foliage photogrammetry usually fails because the subject moves
+  between frames — here it did not.
 - **The 153 low/mid images had their metadata repaired.** These were exported through
   RealityCapture, which stripped all EXIF. The original camera metadata — make, model, GPS,
   timestamp, exposure — was grafted back on from the untouched 16-bit source files.

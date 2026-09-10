@@ -10,8 +10,10 @@ look — vegetation needs different treatment from buildings.
 
 Everything that makes urban photogrammetry reliable is absent here:
 
-- **The subject moves.** Leaves and thin branches shift between frames in any breeze. Two
-  images seconds apart are not observing identical geometry.
+- **The subject normally moves.** Leaves and thin branches shift between frames in any breeze,
+  so two images seconds apart observe different geometry. **This capture avoided that entirely** —
+  both sessions were flown in completely still air, waited for deliberately. That is why it
+  solves, and it is worth knowing that a windy recapture of the same tree would not.
 - **Texture is self-similar.** One leaf looks like ten thousand other leaves. Feature matchers
   produce confident, wrong correspondences.
 - **The subject occludes itself.** The canopy hides the trunk from above; the trunk hides the
@@ -25,11 +27,11 @@ This dataset is worth benchmarking against precisely because these problems are 
 
 ## RealityCapture / RealityScan
 
-**Alignment**
+**Alignment** — suggested starting points, not the original run's settings.
 | setting | value | why |
 |---|---|---|
 | Image overlap | `High` | dense orbits with heavy overlap |
-| Detector sensitivity | **`High`** | **the important one** — `Medium` under-detects on foliage |
+| Detector sensitivity | **`High`** | `Medium` tends to under-detect on foliage |
 | Max features per image | `40000` | |
 | Max features per mpx | `10000` | |
 | Image downscale factor | `1` | do not downscale; thin structure is already marginal |
