@@ -4,6 +4,22 @@
 807 align, and the solved camera poses ship with it in **COLMAP format** — point a Gaussian
 splatting pipeline straight at it, no structure-from-motion run required.** CC BY 4.0.
 
+## ⬇ Download the images
+
+### **[→ huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry)**
+
+**Click that, open the "Files and versions" tab, and download whatever you want.** No account,
+no signup, no tools, no command line. Just click files and they download.
+
+The images are 14 GB so they live there rather than on GitHub, which cannot host files that
+size. This page has the documentation, checksums and camera poses.
+
+*Want one photo to look at? [Here's one.](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg)
+Command-line options are further down under [Download](#download).*
+
+---
+
+
 > ## 🏆 Winner — RealityCapture #RCmonthlyChallenge, August 2020
 >
 > This reconstruction and its [companion Chicago city scan](https://github.com/Matt1Up/chicago-photogrammetry-dataset) were both named
