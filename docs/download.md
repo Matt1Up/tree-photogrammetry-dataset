@@ -30,7 +30,7 @@ Resumable, parallel, hash-verified, and the CLI handles retries for you.
 ```bash
 pip install -U 'huggingface_hub[cli]'
 
-# sample pack (~~400 MB) — look before you commit to 14.1 GB
+# sample pack (~~420 MB) — look before you commit to 14.1 GB
 ./scripts/download.sh --sample
 
 # everything

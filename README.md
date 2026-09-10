@@ -93,7 +93,7 @@ Images are hosted off GitHub — this repository holds documentation, manifests 
 See **[docs/download.md](docs/download.md)** for mirrors and resumable download instructions.
 
 ```bash
-# sample pack first (~400 MB) — evaluate before committing to 14 GB
+# sample pack first (~420 MB) — evaluate before committing to 14 GB
 ./scripts/download.sh --sample
 
 # full image set

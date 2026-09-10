@@ -27,7 +27,10 @@ avg = sum(int(r["bytes"]) for r in rows) / len(rows)
 n_total = max(1, int(target * 1024 * 1024 / avg))
 print(f"{len(rows)} images, avg {avg/2**20:.1f} MB -> sampling ~{n_total} for ~{target} MB")
 
-MIN_PER_GROUP = 4
+# Adaptive floor. A fixed floor breaks in both directions: with many groups it blows the size
+# budget (13 groups x 4 = 52 images regardless of target), and with few groups a small floor
+# starves the distinctive minority groups. Scale it to the budget instead.
+MIN_PER_GROUP = max(2, min(4, n_total // max(1, len(groups))))
 
 picked = []
 for g, items in sorted(groups.items(), key=lambda kv: -len(kv[1])):
