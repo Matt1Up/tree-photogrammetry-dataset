@@ -27,10 +27,14 @@ avg = sum(int(r["bytes"]) for r in rows) / len(rows)
 n_total = max(1, int(target * 1024 * 1024 / avg))
 print(f"{len(rows)} images, avg {avg/2**20:.1f} MB -> sampling ~{n_total} for ~{target} MB")
 
+MIN_PER_GROUP = 4
+
 picked = []
 for g, items in sorted(groups.items(), key=lambda kv: -len(kv[1])):
     items.sort(key=lambda r: r["filename"])
-    share = max(1, round(n_total * len(items) / len(rows)))
+    # floor per group: proportional sampling starves small groups, and small groups are
+    # often the distinctive ones a sample most needs to show
+    share = max(MIN_PER_GROUP, round(n_total * len(items) / len(rows)))
     step = max(1, len(items) // share)
     sel = items[::step][:share]
     picked.extend(sel)
