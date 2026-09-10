@@ -119,25 +119,37 @@ Four more solved to an impossible focal length and are listed in
 
 ## Download
 
-Images are hosted off GitHub — this repository holds documentation, manifests and checksums.
-See **[docs/download.md](docs/download.md)** for mirrors and resumable download instructions.
+**→ [huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry)**
+
+Click the **Files** tab and download whatever you want in a browser — no tooling, no account.
+This GitHub repo holds the documentation, manifests, checksums and camera poses; the images
+live there.
+
+**One file, straight from a browser or the shell:**
 
 ```bash
-# sample pack first (~420 MB) — evaluate before committing to 14 GB
-./scripts/download.sh --sample
+curl -O https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg
+```
 
-# full image set
-./scripts/download.sh --full
+**Everything, as a git repo** (needs git-lfs):
 
-# just the low-altitude trunk tiers (153 images)
+```bash
+git clone https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry
+```
+
+**Or use the helper script**, which is just a wrapper around the Hugging Face CLI and adds
+resume, parallel transfers and hash checking:
+
+```bash
+pip install -U 'huggingface_hub[cli]'
+
+./scripts/download.sh --sample     # ~420 MB, look before committing to 14 GB
+./scripts/download.sh --full       # everything
+./scripts/download.sh --colmap     # points3D.txt for splatting
 ./scripts/download.sh --group Original_low --group Original_mid
 ```
 
-Every file is checksummed. After downloading:
-
-```bash
-./scripts/verify.sh
-```
+More detail and mirrors in **[docs/download.md](docs/download.md)**.
 
 ## Reproducing the reconstruction
 
