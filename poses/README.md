@@ -36,12 +36,16 @@ Solved in RealityScan 2.2, which is free.
 
 ## Gaussian splatting
 
-Most 3DGS implementations read COLMAP format, so you'll need to convert:
+**Already converted** — [`colmap/`](colmap/) has `cameras.txt`, `images.txt` and
+`points3D.txt`, which is what 3DGS implementations read. Grab `points3D.txt` with
+`./scripts/download.sh --colmap` and point your pipeline at it.
 
-- Rotation is already world→camera, same as COLMAP. Convert to quaternion for `images.txt`
-- COLMAP's translation is `t = -R * position`, not the position itself
-- `tiepoints.ply` becomes `points3D`
-- Downsample to ~1600px wide first. Nothing trains at 5464px
+Downsample the images to ~1600 px wide before training. Nothing trains at 5464 px, and the
+originals are here so you can pick your own resolution.
+
+If you want to redo the conversion yourself,
+[`../scripts/xmp-to-colmap.py`](../scripts/xmp-to-colmap.py) does it and prints its own
+verification.
 
 ## The 5 that didn't align
 

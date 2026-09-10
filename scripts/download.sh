@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Download the image set for this dataset.
 #   ./scripts/download.sh --sample            small evaluation pack
+#   ./scripts/download.sh --colmap            COLMAP sparse reconstruction (points3D.txt, 56 MB)
 #   ./scripts/download.sh --full              everything (14.1 GB, 812 images)
 #   ./scripts/download.sh --group NAME [...]  one or more capture groups
 set -euo pipefail
@@ -12,6 +13,7 @@ groups=(); mode=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --sample) mode=sample; shift ;;
+    --colmap) mode=colmap; shift ;;
     --full)   mode=full;   shift ;;
     --group)  groups+=("$2"); mode=group; shift 2 ;;
     --dest)   DEST="$2"; shift 2 ;;
@@ -35,6 +37,7 @@ args=(download "$HF_REPO" --repo-type dataset --local-dir "$DEST")
 
 case "$mode" in
   sample) args+=(--include "sample/*") ;;
+  colmap) args+=(--include "colmap/*") ;;
   full)   args+=(--include "images/*") ;;
   group)  for g in "${groups[@]}"; do args+=(--include "images/${g}*"); done ;;
 esac

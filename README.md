@@ -1,8 +1,8 @@
 # Single Tree — High-Density Photogrammetry Dataset
 
 **812 photos of one mature deciduous tree, flown from 0.5 to 7.9 m above the ground. 14.1 GB.
-807 align, and the solved camera poses ship with it — ready for Gaussian splatting without
-running COLMAP first.** CC BY 4.0.
+807 align, and the solved camera poses ship with it in **COLMAP format** — point a Gaussian
+splatting pipeline straight at it, no structure-from-motion run required.** CC BY 4.0.
 
 > ## 🏆 Winner — RealityCapture #RCmonthlyChallenge, August 2020
 >
@@ -97,15 +97,25 @@ exactly what those pipelines ingest.
 
 | | |
 |---|---|
+| `poses/colmap/` | **COLMAP sparse reconstruction** — `cameras.txt`, `images.txt`, `points3D.txt` |
 | `poses/xmp/` | 807 XMP sidecars, named to match `images/` |
 | `poses/cameras.csv` | the same data as one table |
+| `poses/suspect_cameras.txt` | 4 cameras with implausible solved focal lengths |
 | `poses/unaligned.txt` | the 5 that did not solve |
 | `tiepoints.ply` | 1.2M sparse points, 77 MB — hosted with the images, not in git |
 
-Solved in RealityScan 2.2, which is free. Format and COLMAP conversion notes are in
-[`poses/README.md`](poses/README.md).
+Solved in RealityScan 2.2, which is free, then converted to COLMAP format by
+[`scripts/xmp-to-colmap.py`](scripts/xmp-to-colmap.py). The converter does not assume the
+camera-frame convention — it tests both by reprojecting tie points and keeps whichever puts
+them in front of the cameras. See [`poses/colmap/README.md`](poses/colmap/README.md).
+
+```bash
+./scripts/download.sh --colmap     # points3D.txt, 56 MB
+```
 
 The 5 that didn't align are all from the low and mid tiers, none from `The_Tree`.
+Four more solved to an impossible focal length and are listed in
+[`poses/suspect_cameras.txt`](poses/suspect_cameras.txt) — worth dropping before training.
 
 ## Download
 

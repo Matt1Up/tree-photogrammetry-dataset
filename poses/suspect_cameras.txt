@@ -1,0 +1,9 @@
+# Cameras whose solved focal length is not physically possible for the lens used.
+# The DJI Mavic 2 Pro is a fixed 28mm-equivalent. These solved far wider, which
+# means they are badly constrained. They are included in the COLMAP export for
+# completeness -- drop them if your pipeline is sensitive to bad intrinsics.
+# filename  focal_px  focal_35mm_equiv
+The_Tree-88.jpg 1397.2 9.21
+The_Tree-223.jpg 1409.9 9.29
+The_Tree-137.jpg 1433.1 9.44
+The_Tree-235.jpg 1439.3 9.48
