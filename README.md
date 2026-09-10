@@ -1,7 +1,8 @@
 # Single Tree — High-Density Photogrammetry Dataset
 
 **812 full-resolution photographs (14.1 GB) of one mature deciduous tree, captured from
-ground level to above the canopy. 807 of 812 images align.**
+ground level to above the canopy. 807 of 812 images align — and the solved camera poses
+ship with it.**
 Released under CC BY 4.0 — free for commercial, academic and ML use with attribution.
 
 > ## 🏆 Winner — RealityCapture #RCmonthlyChallenge, August 2020
@@ -60,6 +61,7 @@ Full project write-up: **[mattguertin.com/portfolio/tree](https://mattguertin.co
 | **Geotagging** | GPS latitude / longitude / altitude in EXIF, all 812 images |
 | **Location** | Minnetonka, MN — 44.944 N, −93.426 W |
 | **Captured** | 18 and 20 July 2020 |
+| **Camera poses** | included — 807 solved cameras + 1.2M tie points ([`poses/`](poses/)) |
 
 ### Capture tiers
 
@@ -86,6 +88,30 @@ A **FARO Focus S150** terrestrial laser scanner was also on site, visible above.
 **Its data is not part of this release** — this dataset is the 812 photographs only. The
 scanner is shown because it is part of the honest record of how the subject was captured, not
 because point clouds are included.
+
+## Camera poses — start training immediately
+
+**[`poses/`](poses/) contains a solved alignment**: 807 cameras with full intrinsics and
+extrinsics, plus a 1,206,765-point sparse cloud. That is the equivalent of a COLMAP sparse
+reconstruction, already done.
+
+Most people who download a photogrammetry dataset spend their first several hours running
+structure from motion before they can begin. On 812 images at 20 MP that is a long wait for a
+result you already know. **Skip it.**
+
+| | |
+|---|---|
+| `poses/xmp/` | 807 XMP sidecars, named to match `images/` |
+| `poses/cameras.csv` | the same data as one table |
+| `poses/unaligned.txt` | the 5 that did not solve |
+| `tiepoints.ply` | 1.2M sparse points, hosted with the images (77 MB) |
+
+Solved in **RealityScan 2.2**, the current free version, so the alignment is reproducible by
+anyone rather than tied to a licence. Format details and Gaussian-splatting conversion notes
+are in [`poses/README.md`](poses/README.md).
+
+**All five unaligned images come from the low and mid tiers**, none from `The_Tree` — the
+near-ground upward-angled frames are genuinely the hard ones. Beating 807 is a real result.
 
 ## Download
 
@@ -116,7 +142,8 @@ Aligns in RealityCapture / RealityScan, Agisoft Metashape, COLMAP and Meshroom. 
 GPS, so georeferencing works without ground control.
 
 **Expect ~807/812.** A handful of frames genuinely do not solve — that is the honest result on
-this subject, not a processing failure to debug away.
+this subject, not a processing failure to debug away. The solved alignment is in [`poses/`](poses/)
+if you want to compare against it rather than start from nothing.
 
 ## Known characteristics
 
