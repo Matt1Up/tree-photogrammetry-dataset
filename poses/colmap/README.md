@@ -43,6 +43,20 @@ Converted from the RealityScan XMP sidecars in [`../xmp/`](../xmp/) by
   alternative. Re-run the script and it prints those numbers again.
 - All 807 quaternions are unit length.
 
+## Scale
+
+**The coordinate frame has no verified scale.** It is a local frame — not lat/lon, and not
+confirmed to be metres.
+
+I tried to check it against the EXIF GPS and could not. Comparing solved camera separations to
+GPS separations gives a ratio that keeps changing with baseline length — 3.55 at 3–8 m, 2.03 at
+8–15 m, 1.42 at 15–25 m — which is what GPS noise looks like, not a scale factor. The entire
+capture spans roughly 17 m of GPS footprint, and consumer GPS carries several metres of error
+per fix, so there is no baseline here long enough to calibrate against.
+
+For Gaussian splatting, NeRF, or novel-view synthesis this does not matter. If you need real
+units, measure something in the scene.
+
 ## Four cameras you may want to drop
 
 [`../suspect_cameras.txt`](../suspect_cameras.txt) lists four whose solved focal length is

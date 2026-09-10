@@ -28,8 +28,11 @@ Solved in RealityScan 2.2, which is free.
 - `Rotation` — 3×3 matrix, row-major, world→camera
 - `Position` — camera centre in world coordinates
 - `FocalLength35mm` — multiply by `width / 36` for pixels
-- Coordinates are local metric (metres), not lat/lon. The images carry GPS in EXIF if you want
-  to georeference
+- **Coordinates are a local frame of unverified scale** — not lat/lon, and not confirmed to be
+  metres. The whole capture spans about 17 m of GPS footprint, which is too small to calibrate
+  scale against consumer GPS carrying several metres of error per fix. If you need real-world
+  units, measure something in the scene. For splatting or novel-view work the scale does not
+  matter
 
 `cameras.csv` has the same fields as columns: `R0`–`R8`, `X`/`Y`/`Z`, `focal_35mm`,
 `principal_u`/`principal_v`, `distortion_model`, `distortion_coeffs`, `width`, `height`.
