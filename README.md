@@ -77,10 +77,15 @@ conventional descending orbit never sees.
 
 ## The capture rig
 
-![Terrestrial laser scanner on site](preview/rig-laser.jpg)
+![FARO Focus S150 set up beneath the subject tree](preview/rig-laser.jpg)
 
-Flown with a DJI Mavic 2 Pro (Hasselblad L1D-20c), developed from DNG in Lightroom Classic 9.3
-with consistent settings across the set.
+Photography flown with a **DJI Mavic 2 Pro** (Hasselblad L1D-20c), developed from DNG in
+Lightroom Classic 9.3 with consistent settings across the set.
+
+A **FARO Focus S150** terrestrial laser scanner was also on site, visible above.
+**Its data is not part of this release** — this dataset is the 812 photographs only. The
+scanner is shown because it is part of the honest record of how the subject was captured, not
+because point clouds are included.
 
 ## Download
 
