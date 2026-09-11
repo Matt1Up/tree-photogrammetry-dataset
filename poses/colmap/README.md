@@ -7,7 +7,7 @@ you can start training without running structure-from-motion first.
 colmap/
   cameras.txt     807 PINHOLE cameras
   images.txt      807 poses (quaternion + translation)
-  points3D.txt    1,206,765 points — hosted with the images, 56 MB
+  points3D.txt    1,206,765 points — hosted with the images, 58 MB
 ```
 
 `points3D.txt` is not in git because of its size. Get it with:

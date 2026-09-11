@@ -4,7 +4,7 @@ The images are **not stored in this GitHub repository** — GitHub is not built 
 Git LFS bandwidth caps would make it unusable. This repo holds documentation, manifests and
 checksums; the images live on Hugging Face.
 
-Total: **14.1 GB, 812 images.**
+Total: **15.1 GB, 812 images.**
 
 ---
 
@@ -12,7 +12,7 @@ Total: **14.1 GB, 812 images.**
 
 **The images are published as individual files, not one giant archive.** That is deliberate:
 
-- You can download **one capture group** instead of all 14.1 GB.
+- You can download **one capture group** instead of all 15.1 GB.
 - Downloads **resume**. A dropped connection partway through does not start over.
 - Each file is **individually checksummed**, so corruption is localised, not fatal.
 - No scratch space needed just to unpack an archive.
@@ -29,7 +29,7 @@ Resumable, parallel, hash-verified, and the CLI handles retries for you.
 ```bash
 pip install -U huggingface_hub
 
-# sample pack (~420 MB) — look before you commit to 14.1 GB
+# sample pack (~440 MB) — look before you commit to 15.7 GB
 ./scripts/download.sh --sample
 
 # everything — images, sample, COLMAP, tie points

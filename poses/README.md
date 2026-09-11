@@ -12,7 +12,7 @@ Solved in RealityScan 2.2, which is free.
 | `xmp/` | 807 XMP files, one per aligned image, named to match `images/` |
 | `cameras.csv` | the same data as one table |
 | `unaligned.txt` | the 5 images that didn't solve |
-| `tiepoints.ply` | 1,206,765 tie points with RGB — hosted with the images, not here (77 MB) |
+| `tiepoints.ply` | 1,206,765 tie points with RGB — hosted with the images, not here (80 MB) |
 
 ## XMP format
 

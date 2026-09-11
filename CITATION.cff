@@ -3,7 +3,7 @@ message: "If you use this dataset, please cite it as below."
 type: dataset
 title: "Single Tree High-Density Photogrammetry Dataset"
 abstract: >-
-  812 full-resolution geotagged photographs (14.1 GB) of a single mature deciduous tree in
+  812 full-resolution geotagged photographs (15.1 GB) of a single mature deciduous tree in
   Minnetonka, Minnesota, captured 18 and 20 July 2020 with a DJI Mavic 2 Pro
   (Hasselblad L1D-20c). Includes low- and mid-altitude hover passes at 0.5 m and 1.7 m with
   upward gimbal angle covering trunk, root flare and canopy underside. 807 of 812 images align.

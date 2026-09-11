@@ -1,6 +1,6 @@
 # Single Tree — High-Density Photogrammetry Dataset
 
-**812 photos of one mature deciduous tree, flown from 0.5 to 7.9 m above the ground. 14.1 GB.
+**812 photos of one mature deciduous tree, flown from 0.5 to 7.9 m above the ground. 15.1 GB.
 807 align, and the solved camera poses ship with it in **COLMAP format** — point a Gaussian
 splatting pipeline straight at it, no structure-from-motion run required.** CC BY 4.0.
 
@@ -8,7 +8,7 @@ splatting pipeline straight at it, no structure-from-motion run required.** CC B
 
 ### **[→ huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry)**
 
-Browse the **Files** tab and take what you want — no account needed. The 14 GB of imagery lives
+Browse the **Files** tab and take what you want — no account needed. The 15 GB of imagery lives
 there because GitHub won't host files that size; this repo holds docs, checksums and poses.
 
 [Sample image](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg)
@@ -65,7 +65,7 @@ Full project write-up: **[mattguertin.com/portfolio/tree](https://mattguertin.co
 
 | | |
 |---|---|
-| **Images** | 812 JPEG · 14.06 GB |
+| **Images** | 812 JPEG · 15.10 GB |
 | **Alignment** | 807 / 812 images solve |
 | **Sensor** | Hasselblad L1D-20c — 1" 20 MP CMOS (DJI Mavic 2 Pro) |
 | **Resolution** | 5464 × 3640 |
@@ -115,7 +115,7 @@ exactly what those pipelines ingest.
 | `poses/cameras.csv` | the same data as one table |
 | `poses/suspect_cameras.txt` | 4 cameras with implausible solved focal lengths |
 | `poses/unaligned.txt` | the 5 that did not solve |
-| `tiepoints.ply` | 1.2M sparse points, 77 MB — hosted with the images, not in git |
+| `tiepoints.ply` | 1.2M sparse points, 80 MB — hosted with the images, not in git |
 
 Solved in RealityScan 2.2, which is free, then converted to COLMAP format by
 [`scripts/xmp-to-colmap.py`](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/scripts/xmp-to-colmap.py). The converter does not assume the
@@ -123,7 +123,7 @@ camera-frame convention — it tests both by reprojecting tie points and keeps w
 them in front of the cameras. See [`poses/colmap/README.md`](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/poses/colmap/README.md).
 
 ```bash
-hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./tree --include 'colmap/*'   # points3D.txt, 56 MB
+hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./tree --include 'colmap/*'   # points3D.txt, 58 MB
 ```
 
 The 5 that didn't align are all from the low and mid tiers, none from `The_Tree`.
@@ -151,7 +151,7 @@ pip install -U huggingface_hub
 hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./tree
 ```
 
-Take part of it with `--include`: `'sample/*'` (~420 MB, look before committing to 14 GB),
+Take part of it with `--include`: `'sample/*'` (~440 MB, look before committing to 16 GB),
 `'images/*'`, `'colmap/*'`, or `'images/Original_low*'` for one capture group.
 
 **Everything, as a git repo** (needs git-lfs):
@@ -167,7 +167,7 @@ SHA-256 list:
 ```bash
 git clone https://github.com/Matt1Up/tree-photogrammetry-dataset && cd tree-photogrammetry-dataset
 
-./scripts/download.sh --sample     # ~420 MB, look before committing to 14 GB
+./scripts/download.sh --sample     # ~440 MB, look before committing to 16 GB
 ./scripts/download.sh --full       # everything
 ./scripts/download.sh --colmap     # points3D.txt for splatting
 ./scripts/download.sh --group Original_low --group Original_mid

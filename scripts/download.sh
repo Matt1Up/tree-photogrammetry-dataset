@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Download the dataset from Hugging Face.
 #   ./scripts/download.sh --sample            small evaluation pack
-#   ./scripts/download.sh --colmap            COLMAP sparse reconstruction (points3D.txt, 56 MB)
-#   ./scripts/download.sh --images            all 812 images (14.1 GB)
+#   ./scripts/download.sh --colmap            COLMAP sparse reconstruction (points3D.txt, 58 MB)
+#   ./scripts/download.sh --images            all 812 images (15.1 GB)
 #   ./scripts/download.sh --full              everything — images, sample, COLMAP, tie points
 #   ./scripts/download.sh --group NAME [...]  one or more capture groups
 set -euo pipefail
