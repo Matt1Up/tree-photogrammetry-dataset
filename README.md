@@ -73,7 +73,7 @@ Full project write-up: **[mattguertin.com/portfolio/tree](https://mattguertin.co
 | **Geotagging** | GPS latitude / longitude / altitude in EXIF, all 812 images |
 | **Location** | Minnetonka, MN — 44.944 N, −93.426 W |
 | **Captured** | 18 and 20 July 2020 |
-| **Camera poses** | included — 807 solved cameras + 1.2M tie points ([`poses/`](poses/)) |
+| **Camera poses** | included — 807 solved cameras + 1.2M tie points ([`poses/`](https://github.com/Matt1Up/tree-photogrammetry-dataset/tree/main/poses)) |
 
 ### Capture tiers
 
@@ -103,7 +103,7 @@ only.
 
 ## Camera poses
 
-[`poses/`](poses/) has 807 solved cameras with intrinsics and extrinsics, plus a
+[`poses/`](https://github.com/Matt1Up/tree-photogrammetry-dataset/tree/main/poses) has 807 solved cameras with intrinsics and extrinsics, plus a
 1,206,765-point sparse cloud. Same thing COLMAP would give you, so you can skip that step and
 go straight to **Gaussian splatting (3DGS)**, NeRF, or meshing — poses plus tie points is
 exactly what those pipelines ingest.
@@ -118,31 +118,41 @@ exactly what those pipelines ingest.
 | `tiepoints.ply` | 1.2M sparse points, 77 MB — hosted with the images, not in git |
 
 Solved in RealityScan 2.2, which is free, then converted to COLMAP format by
-[`scripts/xmp-to-colmap.py`](scripts/xmp-to-colmap.py). The converter does not assume the
+[`scripts/xmp-to-colmap.py`](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/scripts/xmp-to-colmap.py). The converter does not assume the
 camera-frame convention — it tests both by reprojecting tie points and keeps whichever puts
-them in front of the cameras. See [`poses/colmap/README.md`](poses/colmap/README.md).
+them in front of the cameras. See [`poses/colmap/README.md`](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/poses/colmap/README.md).
 
 ```bash
-./scripts/download.sh --colmap     # points3D.txt, 56 MB
+hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./tree --include 'colmap/*'   # points3D.txt, 56 MB
 ```
 
 The 5 that didn't align are all from the low and mid tiers, none from `The_Tree`.
 Four more solved to an impossible focal length and are listed in
-[`poses/suspect_cameras.txt`](poses/suspect_cameras.txt) — worth dropping before training.
+[`poses/suspect_cameras.txt`](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/poses/suspect_cameras.txt) — worth dropping before training.
 
 ## Download
 
 **→ [huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry](https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry)**
 
 Click the **Files** tab and download whatever you want in a browser — no tooling, no account.
-This GitHub repo holds the documentation, manifests, checksums and camera poses; the images
-live there.
+The images live there; the [GitHub repo](https://github.com/Matt1Up/tree-photogrammetry-dataset)
+holds the documentation, manifests, checksums and camera poses.
 
 **One file, straight from a browser or the shell:**
 
 ```bash
-curl -O https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg
+curl -LO https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/resolve/main/images/The_Tree-1.jpg
 ```
+
+**Everything, one command.** Run it again if it stops — finished files are skipped.
+
+```bash
+pip install -U huggingface_hub
+hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./tree
+```
+
+Take part of it with `--include`: `'sample/*'` (~420 MB, look before committing to 14 GB),
+`'images/*'`, `'colmap/*'`, or `'images/Original_low*'` for one capture group.
 
 **Everything, as a git repo** (needs git-lfs):
 
@@ -150,27 +160,29 @@ curl -O https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry/r
 git clone https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry
 ```
 
-**Or use the helper script**, which is just a wrapper around the Hugging Face CLI and adds
-resume, parallel transfers and hash checking:
+**Or the helper scripts** from the [GitHub repo](https://github.com/Matt1Up/tree-photogrammetry-dataset),
+which wrap the same command and add `verify.sh` to check every image against the published
+SHA-256 list:
 
 ```bash
-pip install -U 'huggingface_hub[cli]'
+git clone https://github.com/Matt1Up/tree-photogrammetry-dataset && cd tree-photogrammetry-dataset
 
 ./scripts/download.sh --sample     # ~420 MB, look before committing to 14 GB
 ./scripts/download.sh --full       # everything
 ./scripts/download.sh --colmap     # points3D.txt for splatting
 ./scripts/download.sh --group Original_low --group Original_mid
+./scripts/verify.sh
 ```
 
-More detail and mirrors in **[docs/download.md](docs/download.md)**.
+More detail in **[docs/download.md](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/docs/download.md)**.
 
 ## Reproducing the reconstruction
 
-See **[docs/reproduce.md](docs/reproduce.md)** for alignment settings. The images are ordinary
+See **[docs/reproduce.md](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/docs/reproduce.md)** for alignment settings. The images are ordinary
 geotagged JPEGs, so any structure-from-motion tool will read them — RealityScan, Metashape,
 COLMAP, Meshroom.
 
-Expect ~807/812. The solved alignment is in [`poses/`](poses/) if you want something to compare
+Expect ~807/812. The solved alignment is in [`poses/`](https://github.com/Matt1Up/tree-photogrammetry-dataset/tree/main/poses) if you want something to compare
 against.
 
 ## Notes
@@ -201,7 +213,7 @@ Single Tree Photogrammetry Dataset — Matthew Guertin, 2020.
 Licensed CC BY 4.0. https://github.com/Matt1Up/tree-photogrammetry-dataset
 ```
 
-See [CITATION.cff](CITATION.cff) for BibTeX and academic citation formats.
+See [CITATION.cff](https://github.com/Matt1Up/tree-photogrammetry-dataset/blob/main/CITATION.cff) for BibTeX and academic citation formats.
 
 ## Related
 

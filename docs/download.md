@@ -2,7 +2,7 @@
 
 The images are **not stored in this GitHub repository** — GitHub is not built for this, and
 Git LFS bandwidth caps would make it unusable. This repo holds documentation, manifests and
-checksums; the images live on hosts designed for large public datasets.
+checksums; the images live on Hugging Face.
 
 Total: **14.1 GB, 812 images.**
 
@@ -18,52 +18,41 @@ Total: **14.1 GB, 812 images.**
 - No scratch space needed just to unpack an archive.
 
 **Nothing is gzipped.** JPEG is already compressed — measured on this dataset, gzip reclaims
-**0.2%** while costing hours of CPU and destroying random access. Where archives are offered
-(mirrors below), they are **store-only ZIPs**, split per capture group.
+**0.2%** while costing hours of CPU and destroying random access.
 
 ---
 
-## Primary — Hugging Face
+## Hugging Face
 
 Resumable, parallel, hash-verified, and the CLI handles retries for you.
 
 ```bash
-pip install -U 'huggingface_hub[cli]'
+pip install -U huggingface_hub
 
 # sample pack (~420 MB) — look before you commit to 14.1 GB
 ./scripts/download.sh --sample
 
-# everything
+# everything — images, sample, COLMAP, tie points
 ./scripts/download.sh --full
+
+# the 812 images only
+./scripts/download.sh --images
 
 # just the low-altitude trunk tiers (153 images)
 ./scripts/download.sh --group Original_low --group Original_mid
 ```
 
-Or browse the files directly: **https://huggingface.co/datasets/Matt1Up/tree-minnetonka-photogrammetry**
+Or browse the files directly: **https://huggingface.co/datasets/Matt1up/tree-minnetonka-photogrammetry**
 
-Raw CLI, if you prefer not to use the wrapper:
-
-```bash
-hf download Matt1Up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./data --include 'images/*'
-```
-
----
-
-## Mirror — Internet Archive
-
-Permanent, no account needed, and every item gets a **BitTorrent** file automatically.
-Torrent is the friendliest option for the full set: it resumes, verifies, parallelises, and
-costs the project nothing.
-
-**https://archive.org/details/tree-minnetonka-photogrammetry-2020**
+Raw CLI, if you prefer not to use the wrapper. Run it again if it stops — finished files are
+skipped.
 
 ```bash
-# whole set over torrent
-aria2c https://archive.org/download/tree-minnetonka-photogrammetry-2020/tree-minnetonka-photogrammetry-2020 _archive.torrent
+# everything
+hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./data
 
-# or a single group over plain HTTPS, resumable
-curl -C - -O https://archive.org/download/tree-minnetonka-photogrammetry-2020/images/Grid_Down_1-1.jpg
+# images only
+hf download Matt1up/tree-minnetonka-photogrammetry --repo-type dataset --local-dir ./data --include 'images/*'
 ```
 
 ---
@@ -71,7 +60,8 @@ curl -C - -O https://archive.org/download/tree-minnetonka-photogrammetry-2020/im
 ## Sample pack
 
 A small curated subset — enough to judge image quality, overlap and metadata before
-committing to the full download. Served from `files.hometwin.io`.
+committing to the full download. It is on Hugging Face under `sample/`;
+`./scripts/download.sh --sample` fetches it.
 
 ---
 
@@ -81,11 +71,6 @@ committing to the full download. Served from `files.hometwin.io`.
 ./scripts/verify.sh
 ```
 
-Checks SHA-256 for every file you actually have and ignores the rest, so partial downloads
+Checks SHA-256 for every image you actually have and ignores the rest, so partial downloads
 verify cleanly. `manifest/checksums.sha256` is the authoritative list;
 `manifest/images.csv` additionally carries dimensions, capture time and GPS per image.
-
-## If a mirror is down
-
-All mirrors carry byte-identical files with matching checksums. Pull from whichever works —
-`verify.sh` will confirm you got the right bytes regardless of source.
